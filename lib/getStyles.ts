@@ -16,7 +16,7 @@ export function getStyles(column: Column<any>): CSSProperties {
         left: isPinned === "left" ? `${column.getStart()}px` : undefined,
         right: isPinned === "right" ? `${column.getAfter()}px` : undefined,
         width: column.getSize(),
-        opacity: isPinned ? 1 : undefined,
+        opacity: isPinned ? 0.95 : 1,
         zIndex: isPinned ? 1 : 0,
     };
 }

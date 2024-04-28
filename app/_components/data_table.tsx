@@ -71,13 +71,16 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                 >
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
+                            <TableRow key={headerGroup.id} className="group">
                                 {headerGroup.headers.map((header) => {
                                     return (
                                         <TableHead
                                             key={header.id}
                                             colSpan={header.colSpan}
-                                            className="relative group overflow-hidden"
+                                            className={cn(
+                                                "relative group overflow-hidden group-hover:bg-muted",
+                                                header.column.getIsPinned() && "bg-white",
+                                            )}
                                             style={{
                                                 ...getStyles(header.column),
                                             }}
@@ -90,7 +93,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                                                   )}
                                             <div
                                                 className={cn(
-                                                    "w-[3px] absolute top-0 right-0 bg-black cursor-col-resize touch-none select-none h-full hidden group-hover:flex hover:flex rounded-md",
+                                                    "w-[3px] absolute top-0 right-0 bg-black cursor-col-resize touch-none select-none h-full hover:flex rounded-md",
                                                     header.column.getIsResizing() && "bg-blue-500",
                                                 )}
                                                 onDoubleClick={() => header.column.resetSize()}
