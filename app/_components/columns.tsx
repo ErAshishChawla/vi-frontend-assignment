@@ -1,15 +1,35 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { type ColumnDef } from "@tanstack/react-table";
 import { labels, priorities, statuses } from "../_constants/metadata";
 import { type Task } from "../_constants/schema";
 
 export const columns: Array<ColumnDef<Task>> = [
     {
+        // TASK 1: Created a checkbox column
+        id: "checkbox",
+        accessorKey: "checkbox",
+        header: ({ column }) => {
+            return <Checkbox checked={true} />;
+        },
+        cell: ({ row }) => (
+            <div className="w-[30px]">
+                <Checkbox
+                    checked={row.getIsSelected()}
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
+            </div>
+        ),
+        size: 30,
+    },
+    {
         accessorKey: "id",
         header: ({ column }) => <span>Task</span>,
         cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
+        size: 80,
     },
     {
         accessorKey: "title",
@@ -26,6 +46,7 @@ export const columns: Array<ColumnDef<Task>> = [
                 </div>
             );
         },
+        size: 400,
     },
     {
         accessorKey: "status",
@@ -44,6 +65,7 @@ export const columns: Array<ColumnDef<Task>> = [
                 </div>
             );
         },
+        size: 100,
     },
     {
         accessorKey: "priority",
@@ -66,5 +88,6 @@ export const columns: Array<ColumnDef<Task>> = [
                 </div>
             );
         },
+        size: 120,
     },
 ];
