@@ -20,8 +20,7 @@ import {
 } from "@tanstack/react-table";
 import { DataTablePagination } from "./data-table-pagination";
 
-import { useStyles } from "../_hooks/useStyles";
-
+import { getStyles } from "@/lib/getStyles";
 import { cn } from "@/lib/utils";
 
 interface DataTableProps<TData, TValue> {
@@ -80,7 +79,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                                             colSpan={header.colSpan}
                                             className="relative group overflow-hidden"
                                             style={{
-                                                ...useStyles(header.column),
+                                                ...getStyles(header.column),
                                             }}
                                         >
                                             {header.isPlaceholder
@@ -123,7 +122,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                                                     "bg-muted",
                                             )}
                                             style={{
-                                                ...useStyles(cell.column),
+                                                ...getStyles(cell.column),
                                             }}
                                         >
                                             {flexRender(

@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { Column } from "@tanstack/react-table";
 
-export function useStyles(column: Column<any>): CSSProperties {
+export function getStyles(column: Column<any>): CSSProperties {
     const isPinned = column.getIsPinned();
     const isLastLeftPinnedColumn = isPinned === "left" && column.getIsLastColumn("left");
     const isFirstRightPinnedColumn = isPinned === "right" && column.getIsFirstColumn("right");
